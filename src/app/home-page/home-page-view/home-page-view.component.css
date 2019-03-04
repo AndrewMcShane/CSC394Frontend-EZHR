@@ -1,0 +1,42 @@
+
+.registerSection{
+    text-align: center;
+}
+
+h1{
+    margin: auto;
+    color: #fff;
+    margin: 20px;
+
+}
+
+.registerPane {
+    max-width: 450px;
+    border-radius: 12px;
+    background-color: #fff;
+    margin: auto;
+    margin-top: 0px;
+    overflow: hidden; 
+}
+.JobSeekerRegister,.EmployerRegister{
+    text-align: center;
+    width: 100%;
+}
+
+
+@media(max-width:675px){
+    .topBuffer {
+        height: 83px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+    
+}
+
+@media(max-width:495px){
+    .registerPane {
+        max-width: 90%;
+    }
+}

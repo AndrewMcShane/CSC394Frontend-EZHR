@@ -1,0 +1,39 @@
+
+    <div class="registerSection pimg2">
+      <div class="topBuffer"></div>
+      <div class="topBuffer"></div>
+      <h1 *ngIf="registrationViewState == 0">Make Finding Jobs Easier</h1>
+      <h1 *ngIf="registrationViewState == 1">Make Finding Employees Easier</h1>
+      <div class="registerPane dropShadow">
+        <div class="registerButtonContainer">
+          <button (click)="setSelectedRegistrationViewState(0)" [ngClass]="registrationViewState == 0 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonHalf">Job Seeker</button>
+          <button (click)="setSelectedRegistrationViewState(1)" [ngClass]="registrationViewState == 1 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonHalf">Company</button>
+        </div>
+        <form *ngIf="registrationViewState == 0" class="JobSeekerRegister" #registerUserForm='ngForm' (ngSubmit)="registerUser()" novalidate>
+            <div class="inputHalfContainer">
+                <div class="inputHalfItem">
+                    <div style="margin-right:5px;">
+                        <input type="text" id='userFirstName' class="inputBox inputBoxHalf" style="margin-left:-2px;" #userFirstName='ngModel' required name='userFirstName' placeholder="First Name" maxlength="32" [(ngModel)]='registerModel.userFirstName'>
+                    </div>
+                </div>
+                <div style="margin-left:5px" class="inputHalfItem">
+                    <div>
+                        <input type="text" id='userLastName' class="inputBox" #userLastName='ngModel' required name='userLastName' placeholder="Last Name" maxlength="32" [(ngModel)]='registerModel.userLastName'>
+                      </div>
+                </div>
+              </div>
+          <input type="email" id='userEmail' class="inputBox" #userEmail='ngModel' required name='userEmail' placeholder="Email" maxlength="128" [(ngModel)]='registerModel.userEmail'>
+          <input type="password" id='userPassword' class="inputBox" #userPassword='ngModel' required name='userPassword' placeholder="Password" maxlength="32" [(ngModel)]='registerModel.userPassword'>
+          <button type="submit" class="buttonFull buttonBlueMixin" value="Create Account">Create Account</button>
+        </form>
+        <form *ngIf="registrationViewState == 1" class="EmployerRegister" #registerCompanyForm='ngForm' (ngSubmit)="registerCompany()" novalidate>
+          <input type="text" id='companyName' class="inputBox" #companyName='ngModel' required name='companyName' placeholder="Company Name" maxlength="64" [(ngModel)]='registerModel.companyName'>
+          <input type="email" id='companyEmail' class="inputBox" #companyEmail='ngModel' required name='companyEmail' placeholder="Contact Email" maxlength="128" [(ngModel)]='registerModel.companyEmail'>
+          <input type="password" id='companyPassword' class="inputBox" #companyPassword='ngModel' required name='companyPassword' placeholder="Password" maxlength="32" [(ngModel)]='registerModel.companyPassword'>     
+          <button type="submit" class="buttonFull buttonBlueMixin" value="Register Company">Register Company</button>
+        </form>        
+      </div>
+    </div>
+    <div class="AboutSection"><h1 style="color:#555;margin: auto;text-align: center">EZHR: Finding Jobs and Hiring made easy</h1></div>
+    <div class="AboutSection"></div>
+    <div class="registerJumpSection"></div>

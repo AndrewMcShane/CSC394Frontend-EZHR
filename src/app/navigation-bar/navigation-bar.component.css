@@ -1,0 +1,127 @@
+.topNav {
+    background-color: rgba(233, 233, 233, 0.877);
+    overflow: hidden;
+    position:fixed;
+    top: 0;
+    width: 100%;
+    
+    z-index: 1;
+  }
+
+.topNav a, .topNav button{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 10;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #666;
+    padding:15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    background: none;
+    border: 0;
+  }
+
+.topNav a:hover{
+    text-decoration: underline !important;
+    color: #000 !important;
+  }
+
+.topNav .mobileMenuIco{
+    display: none;
+}
+
+  .mobileNav{
+    height:100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right:0;
+    white-space: nowrap;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: right;
+  }
+  
+  .mobileNav a{
+    padding: 16px 16px 16px 32px;
+    text-decoration: none;
+    font-size:1.8em;
+    font-weight: 10;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #666;
+    transition: 0.4s;
+    display: block !important;
+  
+  }
+  
+  .mobileNav a:hover{
+    color:#000;
+  }
+  
+  .mobileNav .closebtn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 56px;
+  
+  }
+  
+  .mobileNav .mobileNavBg{
+    background-color: #fff;
+    width:100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  .navLogo{
+    font-size: 24px !important;
+    padding:10px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
+
+  .rightSideLink {
+      float: right;
+  }
+
+  @media(max-width:705px){
+
+    .topNav{
+      
+      background-color:#f4f4f4;
+    }
+  
+    .topNav a, .topNav form{
+      display: none;
+      font-size: 32px !important;
+    }
+  
+    .topNav a:hover{
+      text-decoration: none !important;
+    }
+    .topNav .mobileMenuIco{
+      float: right;
+      display: block;
+    }
+    .topNav .navLogo {
+      display: inline-block;
+    }
+    .navLogo{
+      font-size: 24px !important;
+      padding:10px !important;
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+    }
+}

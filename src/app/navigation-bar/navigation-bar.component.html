@@ -1,0 +1,29 @@
+<div class="topNav dropShadow" id="fixedTopNav">
+  <a routerLink="/home" class="navLogo" (click)="toggleMenu(false)" id='topNavLeftMost'>EZHR</a>
+  <a *ngIf="isLoggedIn" (click)="logout()"  class="rightSideLink">Logout</a>
+  <a *ngIf="isLoggedIn" (click)="goToProfile();" class="rightSideLink">Profile</a> 
+  <a *ngIf="isLoggedIn" routerLink="/search" class="rightSideLink">Search</a>
+  <form *ngIf="!isLoggedIn" #loginUserMobileForm='ngForm' (ngSubmit)="login()" novalidate style="width:585px;" class="rightSideLink">
+      <input style="max-width: 225px; display: inline;" type="text" id='emailInMobile' class="inputBox"  #emailIn='ngModel' required name='emailIn' placeholder="Email" maxlength="64" [(ngModel)]='loginModel.emailIn'>
+      <input style="max-width: 225px; display: inline;" type="password" id='passwordInMobile' class="inputBox"  #passwordIn='ngModel' required name='passwordIn' placeholder="Password" maxlength="32" [(ngModel)]='loginModel.passwordIn'>
+      <button style="display:inline;" type="submit" *ngIf="!isLoggedIn" class="rightSideLink">Login</button>
+  </form>
+  
+  <a  *ngIf="isLoggedIn" class="mobileMenuIco" (click)="toggleMenu(true)">&#9776;</a>
+  <a class="mobileMenuIco" style="font-size:16px !important;margin-top: 14px;" *ngIf="!isLoggedIn" (click)="toggleMenu(true)" >Login</a>
+  
+</div>
+
+<div class="mobileNav dropShadow" id="mobileSlideNav">
+  <a class="closebtn" (click)="toggleMenu(false)">&times;</a>
+  <a *ngIf="isLoggedIn" routerLink="/search" (click)="toggleMenu(false)">Search</a>
+  <a *ngIf="isLoggedIn" (click)="toggleMenu(false);goToProfile();"  >Profile</a> 
+  <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+  <form *ngIf="!isLoggedIn" #loginUserForm='ngForm' (ngSubmit)="login()" novalidate style=" max-width: 550px; margin: auto;margin-top:35px;">
+      <input style="display:block" type="text" id='emailIn' class="inputBox"  #emailIn='ngModel' required name='emailIn' placeholder="Email" maxlength="64" [(ngModel)]='loginModel.emailIn'>
+      <input style="display:block" type="password" id='passwordIn' class="inputBox"  #passwordIn='ngModel' required name='passwordIn' placeholder="Password" maxlength="32" [(ngModel)]='loginModel.passwordIn'>
+      <button style="display:block" class="buttonFull buttonBlueMixin" type="submit" (click)="toggleMenu(false)" *ngIf="!isLoggedIn">Login</button>
+  </form>
+  
+  <div class="mobileNavBg">
+</div>

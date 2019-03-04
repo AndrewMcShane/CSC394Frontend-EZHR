@@ -1,0 +1,153 @@
+
+<div class="container">
+    <div class="topBuffer"></div>
+  <div class="content">
+      <div class="topBuffer"></div>
+    <h1>Your Next Interview is A Search Away.</h1>
+    <div class="searchBarContainer dropShadow">
+      <input type="text" class="searchBar ">
+      <button type="button" class="searchButton ">Search</button>
+    </div>
+    <button *ngIf="isDisplayingFilters == true"(click)="isDisplayingFilters = false;filterModel = {};" class="searchBonusButton dropShadow">No Filters</button>
+    <button *ngIf="isDisplayingFilters == false" (click)="isDisplayingFilters = true;" class="searchBonusButton dropShadow">Show Filters</button>
+    <div *ngIf="isDisplayingFilters == true" class="filterSearchContainer dropShadow">
+      <div>
+        <div style="width:20%;display: inline-block; cursor: pointer" (click)="filterModel.salary = -1;">
+          <div *ngIf="filterModel.salary > -1">${{filterModel.salary | number}}+</div>
+        </div>
+        <div style="width:20%; display: inline-block;cursor: pointer" (click)="filterModel.experience = -1;">
+            <div *ngIf="filterModel.experience > -1">{{filterModel.experience | number}} years</div>
+        </div>
+        <div style="width:20%;display: inline-block;cursor: pointer" (click)="filterModel.location = null;">
+            <div *ngIf="filterModel.location">{{filterModel.location}}</div>
+        </div>
+        <div style="width:20%;display: inline-block;cursor: pointer" (click)="filterModel.techSkills = null;">
+            <div *ngIf="filterModel.techSkills">{{filterModel.techSkills}}</div>
+        </div>
+        <div style="width:20%;display: inline-block;cursor: pointer" (click)="filterModel.softSkills = null;">
+            <div *ngIf="filterModel.softSkills">{{filterModel.softSkills}}</div>
+        </div>
+      </div>
+      <div>
+          <button (click)="setActiveSearchFilterTab(0)" [ngClass]="activeSearchFilterTab == 0 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Salary</button>
+          <button (click)="setActiveSearchFilterTab(1)" [ngClass]="activeSearchFilterTab == 1 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Experience</button>
+          <button (click)="setActiveSearchFilterTab(2)" [ngClass]="activeSearchFilterTab == 2 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Location</button>
+          <button (click)="setActiveSearchFilterTab(3)" [ngClass]="activeSearchFilterTab == 3 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Tech Skills</button>
+          <button (click)="setActiveSearchFilterTab(4)" [ngClass]="activeSearchFilterTab == 4 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Soft Skills</button>
+        
+      </div>
+        <form #filterForm="ngForm" (ngSubmit)="filterSelection()" novalidate>
+            <div *ngIf="activeSearchFilterTab == 0" class="searchFilter">
+        
+                <div *ngIf="filterModel.salary > -1">
+                  <h1>${{filterModel.salary | number}}+</h1>
+                  
+                </div>
+                <div *ngIf="!(filterModel.salary > -1)">
+                    <h1>Scroll To Select</h1>
+                  </div>
+                <input type="range" min="0" max="150000" value="-1" step="5000" class="searchFilterSlider" #SalaryFilter='ngModel' name="SalaryFilter" [(ngModel)]='filterModel.salary'>
+             
+            </div>  
+          <div *ngIf="activeSearchFilterTab == 1" class="searchFilter">
+        
+                <div *ngIf="filterModel.experience > -1">
+                 <h1> {{filterModel.experience}} years</h1>
+                </div>
+                <div *ngIf="!(filterModel.experience > -1)">
+                    <h1>Scroll To Select</h1>
+                  </div>
+                <input type="range" min="0" max="10" value="-1" class="searchFilterSlider" #ExperienceFilter='ngModel' name="ExperienceFilter" [(ngModel)]='filterModel.experience'>
+             
+            </div>
+            <div *ngIf="activeSearchFilterTab == 2" class="searchFilter">
+        
+                <div *ngIf="filterModel.location">
+                 <h1> {{filterModel.location}}</h1>
+                </div>
+                <div *ngIf="!(filterModel.location)">
+                    <h1>Input Locations, comma separated</h1>
+                  </div>
+                <input type="text" class="searchFilterInput dropShadow" placeholder="Location, Location, Location.." #LocationFilter='ngModel' name="LocationFilter" [(ngModel)]='filterModel.location'>
+             
+            </div>
+            <div *ngIf="activeSearchFilterTab == 3" class="searchFilter">
+        
+                <div *ngIf="filterModel.techSkills">
+                 <h1> {{filterModel.techSkills}}</h1>
+                </div>
+                <div *ngIf="!(filterModel.techSkills)">
+                    <h1>Input Tech Skills, comma separated</h1>
+                  </div>
+                <input type="input" class="searchFilterInput dropShadow" placeholder="C++, DBMS, Systems.." #TechSkillsFilter='ngModel' name="TechSkillsFilter" [(ngModel)]='filterModel.techSkills'>
+             
+            </div>
+            <div *ngIf="activeSearchFilterTab == 4" class="searchFilter">
+        
+                <div *ngIf="filterModel.softSkills">
+                 <h1> {{filterModel.softSkills}}</h1>
+                </div>
+                <div *ngIf="!(filterModel.softSkills)">
+                    <h1>Input Soft Skills, comma separated</h1>
+                  </div>
+                <input type="input" class="searchFilterInput dropShadow" placeholder="Communication, Organization, Direct.." #SoftSkillsFilter='ngModel' name="SoftSkillsFilter" [(ngModel)]='filterModel.softSkills'>
+             
+            </div>
+        </form>
+        
+    </div>
+
+    <button *ngIf="isDisplayingAnalytics == true"(click)="isDisplayingAnalytics = false;" class="searchBonusButton dropShadow">Hide Analytics</button>
+    <button *ngIf="isDisplayingAnalytics == false" (click)="isDisplayingAnalytics = true;" class="searchBonusButton dropShadow">Show Analytics</button>
+    <div *ngIf="isDisplayingAnalytics == true" class="analyticsContainer dropShadow">
+      <div>
+          <button (click)="setActiveAnalyticTab(0)" [ngClass]="activeAnalyticTab == 0 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Salary</button>
+          <button (click)="setActiveAnalyticTab(1)" [ngClass]="activeAnalyticTab == 1 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Experience</button>
+          <button (click)="setActiveAnalyticTab(2)" [ngClass]="activeAnalyticTab == 2 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Location</button>
+          <button (click)="setActiveAnalyticTab(3)" [ngClass]="activeAnalyticTab == 3 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Tech Skills</button>
+          <button (click)="setActiveAnalyticTab(4)" [ngClass]="activeAnalyticTab == 4 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Soft Skills</button>
+      </div>
+      <div *ngIf="activeAnalyticTab == 0" class="analyticContainer">
+        <img src="../../../assets/images/All Salaries.png">
+      </div>
+      <div *ngIf="activeAnalyticTab == 1" class="analyticContainer">
+          <img src="../../../assets/images/Years of Work Experience.png">
+      </div>
+      <div *ngIf="activeAnalyticTab == 2" class="analyticContainer">
+          <img src="../../../assets/images/Software Developer Skills.png">
+      </div>
+      <div *ngIf="activeAnalyticTab == 3" class="analyticContainer">
+          <img src="../../../assets/images/Computer Science Skills.png">
+      </div>
+      <div *ngIf="activeAnalyticTab == 4" class="analyticContainer">
+          <img src="../../../assets/images/All Salaries.png">
+      </div>
+
+
+    </div>
+    <div class="resultsContainer">
+      <h1>We found 20 potential jobs for that:</h1>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+    </div>
+  </div>
+</div>
+<app-search-result-popup #viewListingPopup></app-search-result-popup>

@@ -1,0 +1,51 @@
+<div class="overlayBackground" [ngClass]="isDisplaying == true ? 'displayPopupBackground' : 'hidePopupBackground' ">
+
+  <div class="topBuffer"></div>
+  <div class="topBuffer"></div>
+  <div class="resultContainer dropShadow">
+    <div class="topHalf">
+      <div class="imageContainer">
+          <a routerLink="/company">
+            <img src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png" alt="company badge">
+          </a>      
+        </div>
+      <div class="titleLocationContainer">
+        <div class="titleContainer">
+          MS, Software Development Intern Summer 2019
+        </div>
+        <div class="locationContainer">
+          Chicago, IL
+        </div>
+      </div>
+    </div>
+    <div class="jobAttributes">
+      <ul style="columns: 2">
+        <li>$65,000 Salary</li>
+        <li>C#</li>
+        <li>C++</li>
+        <li>Team Management</li>
+        <li>1-2 years experience</li>
+        <li>14 days vacation</li>
+        <li>Benefits package</li>
+        <li>HTML, CSS, JS, Angular 7 knowledge is a bonus</li>
+        <li>Communication skill</li>
+        <li> intense focus</li>
+        <li>flexible work hours</li>
+      </ul>
+    </div>
+    <div class="bottomHalf">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus maxime repudiandae blanditiis veniam dolores placeat magni fugit alias ipsa nam velit molestiae iste minus, quia natus, minima quisquam commodi voluptatibus?
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolore vitae aperiam eveniet iste consequuntur, dolorum, delectus dolores libero ipsam voluptates laudantium nesciunt totam. Optio aliquam magnam libero minus commodi!
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus fugiat nulla, amet accusantium, alias explicabo consectetur odio aliquid deserunt ratione necessitatibus eos libero repellendus hic rem impedit enim aut tempora!
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam saepe iste quae, voluptatem amet eaque consectetur commodi voluptatibus omnis ad et, iure modi, nam necessitatibus ab nobis officiis voluptates soluta!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi error fugiat, tempora molestiae sequi placeat est explicabo perspiciatis, esse fugit rem neque non. Labore tempora quia veniam pariatur optio ea.
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium libero laboriosam molestiae corporis sapiente deserunt, qui, voluptate nihil officia voluptatum eaque repellendus recusandae sequi accusamus maxime commodi exercitationem. Asperiores, deleniti?
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis rem ab impedit, sunt illum veniam quo corrupti, dolorem iste enim sit veritatis, maxime consectetur! Nihil saepe dicta ipsam doloribus repellat.
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus nemo tempora impedit voluptates illo minima similique sint incidunt. Quo voluptatibus, magni nam ratione cupiditate ipsum vitae facere iure maxime cumque.   
+    </div>
+    <div class="actionButtons">
+      <button class="buttonHalf" (click)="toggle();" >Cancel</button>
+      <button class="buttonHalf buttonGreenMixin" (click)="goToApplyLink()" >Apply</button>
+    </div>
+  </div>
+</div>
