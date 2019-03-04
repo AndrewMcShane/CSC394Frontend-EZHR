@@ -16,7 +16,7 @@ export class SearchPageViewComponent implements OnInit {
   private activeAnalyticTab = 0;
   private filterModel: any = {};
   private isDisplayingFilters = false;
-  private isDisplayingAnalytics = false;
+  private isDisplayingAnalytics = false; 
   constructor() { }
 
   ngOnInit() {
