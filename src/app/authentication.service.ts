@@ -34,7 +34,7 @@ export class AuthenticationService {
         },
         error => { console.log(error);}
       )
-    )
+    );
   }
 
   logout(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -13,7 +14,7 @@ export class NavigationBarComponent implements OnInit {
 
   loginModel: any = {};
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private authService:AuthenticationService) { }
 
   ngOnInit() {
     this.isLoggedIn = false;
@@ -26,6 +27,7 @@ export class NavigationBarComponent implements OnInit {
   }
 
   logout(){
+    this.authService.logout();
     this.isLoggedIn = false;
     this.router.navigate(['/home']);
   }

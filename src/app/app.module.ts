@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { CompanyPageComponent } from './company-page/company-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { SharedModule } from './shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,13 @@ import { SharedModule } from './shared.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService,
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
