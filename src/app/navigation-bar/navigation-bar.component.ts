@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
+import { LoginService } from '../login.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -14,7 +16,10 @@ export class NavigationBarComponent implements OnInit {
 
   loginModel: any = {};
 
-  constructor(private router:Router, private authService:AuthenticationService) { }
+  constructor(private router:Router, 
+    private authService:AuthenticationService,
+    private loginService: LoginService,
+    private profileService: ProfileService) { }
 
   ngOnInit() {
     this.isLoggedIn = false;
@@ -23,6 +28,8 @@ export class NavigationBarComponent implements OnInit {
   login(){
     this.isLoggedIn = true;
     this.loginModel = {};
+    // TODO: call login service and base respnse on that. 
+    // also, think about a message service for displaying messages.
     this.router.navigate(['/search']);
   }
 
@@ -34,6 +41,7 @@ export class NavigationBarComponent implements OnInit {
 
   goToProfile(){
     // Demo code only.
+    // TODO: call profile service for the user ID. 
     this.router.navigate(['/user']);
   }
 
