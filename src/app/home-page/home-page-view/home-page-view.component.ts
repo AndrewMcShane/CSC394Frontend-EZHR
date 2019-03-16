@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormsModule } from '@angular/forms';
+import { LoginService } from 'src/app/login.service';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page-view',
@@ -13,7 +16,9 @@ export class HomePageViewComponent implements OnInit {
   registerModel : any = {};
   loginModel : any = {};
 
-  constructor() {
+  constructor(
+    private loginService: LoginService,
+    private router: Router ) {
     this.registrationViewState = 0;
   }
 
@@ -25,12 +30,59 @@ export class HomePageViewComponent implements OnInit {
   }
 
   registerUser(){
-    return;
-    // For monday: just route to search page.
+    // TODO:
+    if(this.registerModel.userFirstName == ('' || undefined) || this.registerModel.userLastName == ('' || undefined) || this.registerModel.userEmail == ('' || undefined) || this.registerModel.userPassword == ('' || undefined)){
+      // TODO: broadcast message
+      console.log("Not all fields filled out correctly");
+      return;
+    } else {
+      this.loginService.registerUser(
+        this.registerModel.userFirstName,
+        this.registerModel.userLastName,
+        this.registerModel.userEmail,
+        this.registerModel.userPassword
+      )
+      .pipe(first()).subscribe(
+        message => {
+          // TODO: login user, broadcast message.
+          this.registerModel = {};
+          this.router.navigate(['/search']);
+
+        },
+        error => {
+          // TODO: broadcast error message.
+          this.registerModel = {};
+          return;
+        }
+      )
+    }    
   }
 
   registerCompany(){
+    // TODO: 
+    if(this.registerModel.companyName == ('' || undefined) || this.registerModel.companyEmail == ('' || undefined) || this.registerModel.companyPassword == ('' || undefined)){
+      // TODO: broadcast message
+      console.log("Not all fields filled out correctly");
+      return;
+    } else {
+      this.loginService.registerCompany(
+        this.registerModel.companyName,
+        this.registerModel.companyEmail,
+        this.registerModel.companyPassword
+      )
+      .pipe(first()).subscribe(
+        message => {
+          // TODO: broadcast, login, route to profile.
+          this.registerModel = {};
+          this.router.navigate(['/search']);
+        },
+        error => {
+          // TODO: broadcast error message.
+          this.registerModel = {};
+          return;
+        }
+      )
+    }
     return;
-    // For monday: just route to search page.
   }
 }

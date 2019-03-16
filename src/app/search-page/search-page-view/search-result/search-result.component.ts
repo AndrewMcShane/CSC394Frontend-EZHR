@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { SearchResult } from '../../../_models/SearchResult';
+import { DescriptionParserService } from '../../../description-parser.service';
 
 @Component({
   selector: 'app-search-result',
@@ -7,16 +9,30 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchResultComponent implements OnInit {
 
-  @Output() viewListingEvent = new EventEmitter<number>();
+  @Output() viewListingEvent = new EventEmitter<SearchResult>();
 
-  constructor() { }
+  @Input() resultData:SearchResult;
+  
+
+  constructor(private descriptionParser:DescriptionParserService) { }
 
   ngOnInit() {
+    this.initListing();
   }
 
   viewListing(){
     if(!this.viewListingEvent) return;
-    this.viewListingEvent.next(0);
+    this.viewListingEvent.next(this.resultData);
+  }
+
+  initListing(){
+    if(this.resultData != undefined){
+      this.resultData.keywords = this.descriptionParser.parseDescription(this.resultData.description);
+    }
+  }
+
+  routeToCompany(){
+    return;
   }
 
 }

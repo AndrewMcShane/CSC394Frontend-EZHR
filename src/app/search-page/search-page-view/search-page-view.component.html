@@ -4,13 +4,13 @@
   <div class="content">
       <div class="topBuffer"></div>
     <h1>Your Next Interview is A Search Away.</h1>
-    <div class="searchBarContainer dropShadow">
-      <input type="text" class="searchBar ">
+    <form (submit)="searchForJobs()" class="searchBarContainer dropShadow">
+      <input type="text" class="searchBar" [(ngModel)]="searchQuery">
       <button type="button" class="searchButton ">Search</button>
-    </div>
-    <button *ngIf="isDisplayingFilters == true"(click)="isDisplayingFilters = false;filterModel = {};" class="searchBonusButton dropShadow">No Filters</button>
-    <button *ngIf="isDisplayingFilters == false" (click)="isDisplayingFilters = true;" class="searchBonusButton dropShadow">Show Filters</button>
-    <div *ngIf="isDisplayingFilters == true" class="filterSearchContainer dropShadow">
+    </form>
+    <button *ngIf="isDisplayingFilters == true && results"(click)="isDisplayingFilters = false;filterModel = {};" class="searchBonusButton dropShadow">No Filters</button>
+    <button *ngIf="isDisplayingFilters == false && results" (click)="isDisplayingFilters = true;" class="searchBonusButton dropShadow">Show Filters</button>
+    <div *ngIf="isDisplayingFilters == true && results" class="filterSearchContainer dropShadow">
       <div>
         <div style="width:20%;display: inline-block; cursor: pointer" (click)="filterModel.salary = -1;">
           <div *ngIf="filterModel.salary > -1">${{filterModel.salary | number}}+</div>
@@ -97,56 +97,93 @@
         
     </div>
 
-    <button *ngIf="isDisplayingAnalytics == true"(click)="isDisplayingAnalytics = false;" class="searchBonusButton dropShadow">Hide Analytics</button>
-    <button *ngIf="isDisplayingAnalytics == false" (click)="isDisplayingAnalytics = true;" class="searchBonusButton dropShadow">Show Analytics</button>
-    <div *ngIf="isDisplayingAnalytics == true" class="analyticsContainer dropShadow">
-      <div>
+    
+  
+
+    <h1 *ngIf="results" >Search Analytics:</h1>
+    <div *ngIf="results" class="analyticsContainer dropShadow">
+        
+        <div>
           <button (click)="setActiveAnalyticTab(0)" [ngClass]="activeAnalyticTab == 0 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Salary</button>
           <button (click)="setActiveAnalyticTab(1)" [ngClass]="activeAnalyticTab == 1 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Experience</button>
           <button (click)="setActiveAnalyticTab(2)" [ngClass]="activeAnalyticTab == 2 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Location</button>
           <button (click)="setActiveAnalyticTab(3)" [ngClass]="activeAnalyticTab == 3 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Tech Skills</button>
           <button (click)="setActiveAnalyticTab(4)" [ngClass]="activeAnalyticTab == 4 ? 'selectedTabButton' : 'unselectedTabButton' " class="buttonFifth">Soft Skills</button>
       </div>
-      <div *ngIf="activeAnalyticTab == 0" class="analyticContainer">
-        <img src="../../../assets/images/All Salaries.png">
+
+      <div [hidden]="!(activeAnalyticTab == 0)" class="analyticContainer">
+        <div class='tableauPlaceholder' style='width: 800px; height: 492px;margin:auto;'>
+          <object class='tableauViz' width='800' height='492' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='&#47;t&#47;ezhr' />
+            <param name='name' value='ezhrBook1&#47;JobCountbyjobtype' />
+            <param name='tabs' value='no' /><param name='toolbar' value='no' />
+            <param name='showAppBanner' value='false' />
+            <param name='filter' value=':original_view=yes'/>
+          </object>
+        </div>
       </div>
-      <div *ngIf="activeAnalyticTab == 1" class="analyticContainer">
-          <img src="../../../assets/images/Years of Work Experience.png">
+
+
+      <div [hidden]="!(activeAnalyticTab == 1)" class="analyticContainer">
+        <div class='tableauPlaceholder' style='width: 800px; height: 492px;margin:auto;'>
+          <object class='tableauViz' width='800' height='492' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' />
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='&#47;t&#47;ezhr' />
+            <param name='name' value='ezhrBook1&#47;Sheet13' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='showAppBanner' value='false' />
+            <param name='filter' value=':original_view=yes' />
+            </object>
+          </div>
       </div>
-      <div *ngIf="activeAnalyticTab == 2" class="analyticContainer">
-          <img src="../../../assets/images/Software Developer Skills.png">
+
+
+      <div [hidden]="!(activeAnalyticTab == 2)" class="analyticContainer">
+        <div class='tableauPlaceholder' style='width: 800px; height: 492px;margin:auto;'>
+          <object class='tableauViz' width='800' height='492' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='&#47;t&#47;ezhr' />
+            <param name='name' value='ezhrBook1&#47;JOBCountbyState' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='no' />
+            <param name='showAppBanner' value='false' />
+            <param name='filter' value=':original_view=yes'/>
+          </object>
+        </div>
       </div>
-      <div *ngIf="activeAnalyticTab == 3" class="analyticContainer">
-          <img src="../../../assets/images/Computer Science Skills.png">
+
+      <div [hidden]="!(activeAnalyticTab == 3)" class="analyticContainer">
+          
+        <div class='tableauPlaceholder' style='width: 800px; height: 492px;margin:auto;'>
+          <object class='tableauViz' width='800' height='492' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fus-east-1.online.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='&#47;t&#47;ezhr' />
+            <param name='name' value='ezhrBook1&#47;skills' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='no' />
+            <param name='showAppBanner' value='false' />
+            <param name='filter' value=':original_view=yes'/>
+          </object>
+        </div>
+
+
       </div>
-      <div *ngIf="activeAnalyticTab == 4" class="analyticContainer">
+
+
+      <div [hidden]="!(activeAnalyticTab == 4)" class="analyticContainer">
           <img src="../../../assets/images/All Salaries.png">
       </div>
 
-
     </div>
-    <div class="resultsContainer">
-      <h1>We found 20 potential jobs for that:</h1>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
-        <app-search-result (viewListingEvent)="activateListingPopup($event)"></app-search-result>
+    <div *ngIf="results" class="resultsContainer">
+      <h1>We found {{results.length}} potential jobs for that:</h1>
+        <app-search-result (viewListingEvent)="activateListingPopup($event)" *ngFor="let result of results" [resultData]="result" ></app-search-result>
     </div>
   </div>
 </div>
