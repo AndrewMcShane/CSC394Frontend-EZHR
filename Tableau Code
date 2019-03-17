@@ -1,1 +1,90 @@
 
+This file contains some of the code used in tableau to create calculated fields and parameters. It is not all of it though it 
+should give a good idea of the direction taken to create the graphs in table
+
+/** This methods is skills it pulled all the skills from the database associated with different jobs.
+//java
+IF CONTAINS([job_summary], 'Java') or CONTAINS([job_summary], 'java') then 'Java' 
+//python
+ELSEIF  CONTAINS([job_summary], 'Python') or CONTAINS([job_summary], 'python') then 'Python'
+//C++
+ELSEIF  CONTAINS([job_summary], 'C++') or CONTAINS([job_summary], 'c++') then 'C++'
+//C
+ELSEIF  CONTAINS([job_summary], 'C#') or CONTAINS([job_summary], 'c#') then 'C#'
+//algorithms
+ELSEIF  CONTAINS([job_summary], 'Algorithms') or CONTAINS([job_summary], 'algorithms') then 'Algorithms'
+//Neural Networks
+ELSEIF  CONTAINS([job_summary], 'Neural Network') or CONTAINS([job_summary], 'neural network') then 'Neural Network'
+//.NET Networks
+ELSEIF  CONTAINS([job_summary], '.NET') or CONTAINS([job_summary], '.net') then '.NET'
+//PHP
+ELSEIF  CONTAINS([job_summary], 'PHP') or CONTAINS([job_summary], 'php') then 'PHP'
+//SQL
+ELSEIF  CONTAINS([job_summary], 'SQL') or CONTAINS([job_summary], 'sql') then 'SQL'
+//Linux
+ELSEIF  CONTAINS([job_summary], 'Linux') or CONTAINS([job_summary], 'linux') then 'Linux
+//HTML CSS or javascript
+//WEBSTACKor CONTAINS([job_summary], 'java-script') 
+ELSEIF  CONTAINS([job_summary], 'HTML') 
+or CONTAINS([job_summary], 'CSS')
+or CONTAINS([job_summary], 'java-script') 
+or CONTAINS([job_summary], 'javascript') 
+or CONTAINS([job_summary], 'Java Script')
+ then 'Webstack'
+**/
+
+
+/** isASoftwareDeveloper, this was used to pull all software developer positions
+//I have similar code for all job types
+IF CONTAINS([Job Title], 'Software Developer')
+    or CONTAINS([Job Title], 'Software Engineer')
+    or CONTAINS([Job Title], 'Computer Programmer' ) THEN 'Software Developer' END
+    **/
+
+/** This counts all the software development positions
+  I have similar code to count all job types This is used in conjunction with skills to create all
+  sought after skills for specfic positions
+COUNT([isASoftwareDeveloper])
+**/
+
+/**
+another conditional function to pull out all jobs, to be used in the location map and 
+count of jobs
+IF CONTAINS([Job Title], 'Software Developer') 
+            OR  CONTAINS([Job Title], 'Software Engineer') 
+            OR CONTAINS([Job Title], 'Computer Programmer') THEN 'Software Developer'
+    
+    ELSEIF CONTAINS([Job Title], 'Artificial Intelligence') THEN 'AI Engineer'
+
+    ELSEIF CONTAINS([Job Title], 'Database Admin') 
+            OR CONTAINS([Job Title], 'Database Administrator') 
+            OR CONTAINS([Job Title], 'Data Administrator')  
+            OR CONTAINS([Job Title], 'Data Base Administrator')THEN 'DBA'
+
+    ELSEIF CONTAINS([Job Title], 'Machine Learning') 
+            OR CONTAINS([Job Title], 'Data Scientist') 
+            OR CONTAINS([Job Title], 'Data Analyst') 
+            OR CONTAINS([Job Title], 'Data Science')  THEN 'Data Scientist'
+               
+    ELSEIF CONTAINS([Job Title], 'Database Engineer') 
+            OR CONTAINS([Job Title], 'Database Developer') THEN 'Database Engineer'
+               
+    ELSEIF CONTAINS([Job Title], 'Web Developer') 
+            OR CONTAINS([Job Title], 'Web Designer')    THEN 'Web Dev'
+                    
+    ELSEIF CONTAINS([Job Title], 'Java Developer')      THEN 'Java Dev'
+                        
+    ELSEIF CONTAINS([Job Title], 'UI') 
+            OR CONTAINS([Job Title], 'Front-End') 
+            OR CONTAINS([Job Title], 'Front End')  
+            OR CONTAINS([Job Title], 'Frontend')        THEN 'Front End Dev'
+                            
+    ELSEIF CONTAINS([Job Title], 'Full Stack') THEN 'FullStack'
+                                             
+    ELSEIF CONTAINS([Job Title], 'Backend') 
+            OR CONTAINS([Job Title], 'Back end') THEN 'Back End Dev'
+
+
+   ELSE 'OTHER'
+   END
+**/
