@@ -15,19 +15,13 @@ export class LoginService {
 
   registerUser(firstName: string, lastName: string, email: string, password: string) {
    
-    const apiUrl = url +"RegisterUser.php";
+    const  apiUrl = "http://3.80.175.152/register?email="+email+"&password="+password+"&firstName="+firstName+"&lastName="+lastName;
 
-    var jsonObj = JSON.stringify({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password
-    });
-
-    return this.http.post<any>(apiUrl, jsonObj)
+    return this.http.get<any>(apiUrl,{} )
     .pipe(
       map (
         data => {
+          console.log(data);
           return data;
         }
       )

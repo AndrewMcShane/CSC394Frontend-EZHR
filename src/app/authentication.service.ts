@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Request } from 'selenium-webdriver/http';
 
 // TODO: replace with url provided by backend
 const url = 'http://3.80.175.152:82/login';
@@ -11,21 +12,21 @@ const TOKEN_NAME = 'currentUser';
 })
 export class AuthenticationService {
   
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string){
     var obj = {
-      email: "bob.com",
-      password: "1234" 
+      email: email,
+      password: password 
     }
 
     var jsonObj = JSON.stringify(obj);
-    console.log(jsonObj);
-    // TODO: Replace from api provided from backend
+    
     const apiUrl = url;
     
-
-    return this.http.post<any>(apiUrl,jsonObj)
+    return this.http.post<any>(apiUrl,jsonObj, this.options)
     .pipe(
       map(
         data => {

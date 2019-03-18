@@ -17,14 +17,14 @@ export class SearchPageViewComponent implements OnInit {
 
   @ViewChild('viewListingPopup') viewListingOverlay: SearchResultPopupComponent;
 
-  private activeSearchFilterTab = 0;
-  private activeAnalyticTab = 0;
-  private filterModel: any = {};
-  private isDisplayingFilters = false;
-  private isDisplayingAnalytics = true; 
+   activeSearchFilterTab = 0;
+   activeAnalyticTab = 0;
+   filterModel: any = {};
+   isDisplayingFilters = false;
+   isDisplayingAnalytics = true; 
 
-  private searchQuery:any = {};
-  private results: Array<SearchResult>;
+   searchQuery:any = {};
+   results: Array<SearchResult>;
 
   viz: any;
   constructor(

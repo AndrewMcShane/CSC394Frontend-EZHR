@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
 })
 export class NavigationBarComponent implements OnInit {
 
-  private isLoggedIn: boolean;
+  public isLoggedIn: boolean;
 
   loginModel: any = {};
 
@@ -47,8 +47,9 @@ export class NavigationBarComponent implements OnInit {
     // For testing purposes only
     this.isLoggedIn = true;
     this.loginModel = {};
+    localStorage.setItem("currentUser", "user Is Logged In");
     this.router.navigate(['/search']);
-    return;/*
+    return;
     // this is the production code.
     if(this.loginModel.emailIn == ('' || undefined) || this.loginModel.passwordIn == ('' || undefined)){
       // broadcast as well.
@@ -69,7 +70,7 @@ export class NavigationBarComponent implements OnInit {
           console.log(error.error);
         }
       )
-    }*/
+    }
   }
 
   logout(){

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { TosPageComponent } from './tos-page/tos-page.component';
 import {CookieService} from 'ngx-cookie-service';
+import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import {CookieService} from 'ngx-cookie-service';
   ],
   providers: [
     AuthenticationService,
-    CookieService
+    CookieService,
+    { provide: APP_BASE_HREF, useValue: '/' },
+       { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

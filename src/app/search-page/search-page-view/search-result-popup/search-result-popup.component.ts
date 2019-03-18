@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../../../_models/SearchResult';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-result-popup',
@@ -8,14 +9,16 @@ import { SearchResult } from '../../../_models/SearchResult';
 })
 export class SearchResultPopupComponent implements OnInit {
 
-  private isDisplaying: boolean;
-  private jobData: SearchResult;
-  private keywords: Array<string>;
+  public isDisplaying: boolean;
+  public jobData: SearchResult;
+  public keywords: Array<string>;
 
   outToLink = "http://www.google.com";
 
   
-  constructor() { 
+  constructor(
+    private router: Router
+  ) { 
     this.isDisplaying = false;
   }
 
@@ -39,8 +42,7 @@ export class SearchResultPopupComponent implements OnInit {
   }
 
   goToCompanyPage(){
-    // TODO:
-    return;
+    this.router.navigate(['/company']);
   }
 
 }
