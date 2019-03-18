@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 // TODO: replace with url provided by backend
-const url = '/';
+const url = 'http://3.80.175.152:82/login';
 const TOKEN_NAME = 'currentUser';
 
 @Injectable({
@@ -15,22 +15,24 @@ export class AuthenticationService {
 
   login(email: string, password: string){
     var obj = {
-      username: email,
-      password: password
+      email: "bob.com",
+      password: "1234" 
     }
 
     var jsonObj = JSON.stringify(obj);
-    
+    console.log(jsonObj);
     // TODO: Replace from api provided from backend
-    const apiUrl = url + "loginUser.php";
+    const apiUrl = url;
+    
 
     return this.http.post<any>(apiUrl,jsonObj)
     .pipe(
       map(
         data => {
-          if(data && data.jwt){
+          console.log(data);
+          /*if(data && data.jwt){
             localStorage.setItem(TOKEN_NAME, JSON.stringify(data));
-          }
+          }*/
         },
         error => { console.log(error);}
       )

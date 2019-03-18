@@ -6,6 +6,7 @@ const TOKEN_NAME = 'currentUser';
 
 export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next:HttpHandler): Observable<HttpEvent<any>> {
+        return;
         const token = JSON.parse(localStorage.getItem(TOKEN_NAME));
         if(token) {
             const cloned  = request.clone({

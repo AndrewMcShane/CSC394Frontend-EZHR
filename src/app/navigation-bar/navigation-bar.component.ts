@@ -48,7 +48,7 @@ export class NavigationBarComponent implements OnInit {
     this.isLoggedIn = true;
     this.loginModel = {};
     this.router.navigate(['/search']);
-    return;
+    return;/*
     // this is the production code.
     if(this.loginModel.emailIn == ('' || undefined) || this.loginModel.passwordIn == ('' || undefined)){
       // broadcast as well.
@@ -69,7 +69,7 @@ export class NavigationBarComponent implements OnInit {
           console.log(error.error);
         }
       )
-    }
+    }*/
   }
 
   logout(){
