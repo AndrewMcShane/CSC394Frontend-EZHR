@@ -24,16 +24,33 @@
               </div>
           <input type="email" id='userEmail' class="inputBox" #userEmail='ngModel' required name='userEmail' placeholder="Email" maxlength="128" [(ngModel)]='registerModel.userEmail'>
           <input type="password" id='userPassword' class="inputBox" #userPassword='ngModel' required name='userPassword' placeholder="Password" maxlength="32" [(ngModel)]='registerModel.userPassword'>
+          <div class="inputHalfContainer">
+            <div class="inputHalfItem">
+                <div style="margin-right:5px; position: relative;">
+                    <input type="checkbox" id='agreeCheckUser' class="inputBox inputBoxHalf" style="margin-left:-2px;float: right!important" #agreeCheckUser='ngModel' required name='agreeCheckUser' [(ngModel)]='registerModel.agreeCheckUser'>
+                </div>
+            </div>
+            <div  class="inputHalfItem">
+                I agree to the <a routerLink="/terms">terms of service</a>.
+            </div>
+          </div>
           <button type="submit" class="buttonFull buttonBlueMixin" value="Create Account">Create Account</button>
         </form>
         <form *ngIf="registrationViewState == 1" class="EmployerRegister" #registerCompanyForm='ngForm' (ngSubmit)="registerCompany()" novalidate>
           <input type="text" id='companyName' class="inputBox" #companyName='ngModel' required name='companyName' placeholder="Company Name" maxlength="64" [(ngModel)]='registerModel.companyName'>
           <input type="email" id='companyEmail' class="inputBox" #companyEmail='ngModel' required name='companyEmail' placeholder="Contact Email" maxlength="128" [(ngModel)]='registerModel.companyEmail'>
-          <input type="password" id='companyPassword' class="inputBox" #companyPassword='ngModel' required name='companyPassword' placeholder="Password" maxlength="32" [(ngModel)]='registerModel.companyPassword'>     
+          <input type="password" id='companyPassword' class="inputBox" #companyPassword='ngModel' required name='companyPassword' placeholder="Password" maxlength="32" [(ngModel)]='registerModel.companyPassword'>  
+          <div class="inputHalfContainer">
+            <div class="inputHalfItem">
+                <div style="margin-right:5px; position: relative;">
+                    <input type="checkbox" id='agreeCheckCompany' class="inputBox inputBoxHalf" style="margin-left:-2px;float: right!important" #agreeCheckCompany='ngModel' required name='agreeCheckCompany' [(ngModel)]='registerModel.agreeCheckCompany'>
+                </div>
+            </div>
+            <div  class="inputHalfItem">
+                I agree to the <a routerLink="/terms">terms of service</a>.
+            </div>
+          </div>   
           <button type="submit" class="buttonFull buttonBlueMixin" value="Register Company">Register Company</button>
         </form>        
       </div>
     </div>
-    <div class="AboutSection"><h1 style="color:#555;margin: auto;text-align: center">EZHR: Finding Jobs and Hiring made easy</h1></div>
-    <div class="AboutSection"></div>
-    <div class="registerJumpSection"></div>

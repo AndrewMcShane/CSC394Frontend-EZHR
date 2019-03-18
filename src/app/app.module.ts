@@ -10,13 +10,16 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { SharedModule } from './shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
+import { TosPageComponent } from './tos-page/tos-page.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
     CompanyPageComponent,
-    UserPageComponent
+    UserPageComponent,
+    TosPageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { AuthenticationService } from './authentication.service';
   ],
   providers: [
     AuthenticationService,
-    
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

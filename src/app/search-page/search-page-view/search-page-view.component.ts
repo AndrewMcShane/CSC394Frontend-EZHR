@@ -23,8 +23,8 @@ export class SearchPageViewComponent implements OnInit {
   private isDisplayingFilters = false;
   private isDisplayingAnalytics = true; 
 
-  private searchQuery:string;
-  private results: SearchResult[];
+  private searchQuery:any = {};
+  private results: Array<SearchResult>;
 
   viz: any;
   constructor(
@@ -51,19 +51,28 @@ export class SearchPageViewComponent implements OnInit {
   }
 
   searchForJobs(){
-    if(this.searchQuery == ('' || undefined)){
+    if(this.searchQuery.query == ('' || undefined)){
       // TODO: broadcast message.
+      console.log(this.searchQuery.query);
       console.log("invalid information input in search query");
     } else {
-      this.searchService.getJobListings(this.searchQuery)
+      console.log("Sending Query: '" + this.searchQuery.query + "'");
+      this.searchService.getJobListings(this.searchQuery.query)
       .pipe(first()).subscribe(
         message => { 
-          this.results = message.results;
-          return;
+           
+          this.results = new Array<SearchResult>();
+
+          let res = JSON.parse(message);
+
+          for(let rawResult in res){
+            this.results.push(this.parseResult(res[rawResult]));
+          }
+          
         },
         error => {
           // TODO: broadcast message.
-          this.searchQuery = "";
+          
           console.log(error.error);
           return;
         }
@@ -72,7 +81,19 @@ export class SearchPageViewComponent implements OnInit {
   }
 
   filterSelection(){
-    return;
+   if(this.filterModel.location == ('' || undefined)){
+     return;
+   }
+
+   let filters = this.filterModel.location.split(",");
+   for(let filter in filters){
+    filters[filter] = filters[filter].trim();
+    this.results = this.results.filter(element => 
+      {return element.job_summary.toLowerCase().includes(filters[filter].toLowerCase())}
+    );
+  }
+   
+   
   }
 
   displayTableau(){
@@ -90,5 +111,37 @@ export class SearchPageViewComponent implements OnInit {
     };
     // Creating a viz object and embed it in the container div.
     this.viz = new tableau.Viz(placeholderDiv, url, options);
+  }
+
+
+  private parseResult(raw:string){
+    // Parse out the strings, make it nice and neat, return a SearchResult Object or append it to the results array
+    let res = new SearchResult();
+    // removes the superflorus bit from the link at the end.
+    raw = raw.substring(1, raw.length-2);
+    
+    let fields = raw.split("), 'job");
+    
+          for(let field in fields){
+            // [field: fieldData]
+            let fieldSplit:string[] = fields[field].split("':");
+            // compare the field names and then assign them if they match.
+            //console.log(fields[field]);
+            let fieldData = fieldSplit[1].substring(13, fieldSplit[1].length-1);
+            if(field == '0'){
+              res.job_title = fieldData;
+            } else if(field == '1'){
+              res.job_company = fieldData;
+            } else if(field =='2'){
+              res.job_location = fieldData;
+            } else if(field =='3'){
+              res.job_summary = fieldData;
+            } else if(field=='4'){
+              res.job_url = fieldData;
+            }
+            
+          }
+
+    return res;
   }
 }

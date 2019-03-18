@@ -6,12 +6,13 @@ import { Injectable } from '@angular/core';
 export class DescriptionParserService {
 
   private keywordListSingle: string[] = [
-    "c#", "c++" , "java", "python", "ruby", "scala", "perl", "rust", "php", "html", "sql", "mysql", "erlang", "haskell", "fortran", "f", "f#", 
-    "communication", "reporting", "flexible", "leadership", "excel", "adobe", "angular", "lua", "xml", "json", "frontend", "backend", "server"
+    "c#", "c++" , "java", "python", "ruby", "scala", "perl", "rust", "php", "html", "sql", "mysql", "erlang", "haskell", "fortran", "f#", 
+    "communication", "reporting", "flexible", "leadership", "excel ", "adobe", "angular", "lua", "xml", "json", "frontend", "backend", "server", "angularjs", "reactjs", "phd",
+    "numpy"
   ];
   private keywordListPhrase: string[] = [
-    "data analysis", "communication skills", "hard working", "machine learning", "flexible hours", "design patterns", "artificial intelligence", "negotiable pay",
-    "microsoft office", "web development", "product testing", "quality assurance", "goal oriented", "schedule meeting", "sales", "product review"
+    "data analysis", "communication skills", "hard working","machine learning", "flexible hours", "design patterns", "artificial intelligence", "negotiable pay",
+    "microsoft office", "web development", "product testing", "quality assurance", "goal oriented", "schedule meeting", "sales", "product review", "full time", "full-time", "part-time", "part time"
   ]
 
 
@@ -20,23 +21,24 @@ export class DescriptionParserService {
 
   parseDescription(description: string){
     // regex for finding currencies in tokenized chunks.
-    let regex = new RegExp('^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$');
+   
+    description = description.toLowerCase();
     let res = new Array<string>();
-    let tokenized = description.split(" ").forEach( token => {
-      // check the single list
-      if(this.keywordListSingle.includes(token.toLowerCase())){
-        res.push(token);
+
+    for(let w in this.keywordListSingle){
+      if(description.includes(this.keywordListSingle[w])){
         
-      } 
-      // check the phrase list
-      else if(this.keywordListPhrase.includes(token.toLowerCase())){
-        res.push(token);
+        res.push(this.keywordListSingle[w]);
       }
-      // try against a number regex for salary
-      if(regex.test(token)){
-        res.push("Salary: " + token);
+    }
+    for(let w in this.keywordListPhrase){
+      if(description.includes(this.keywordListPhrase[w])){
+        
+        res.push(this.keywordListPhrase[w]);
       }
-    });
+    }
+
+   
     
     return res;
   }

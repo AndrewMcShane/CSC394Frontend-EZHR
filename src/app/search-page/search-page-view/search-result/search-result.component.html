@@ -9,16 +9,16 @@
     </div>
     <div class="titleLocationContainer">
       <div class="titleContainer">
-         {{resultData.jobTitle}}
+         {{resultData.job_title}}
       </div>
       <div class="locationContainer">
-        {{resultData.jobLocation}}
+        {{resultData.job_company}} | {{resultData.job_location}}
       </div>
     </div>
   </div>
   <div class="bottomHalf">
-      <ul style="columns: 1;padding-inline-start: 0px;margin-top: 0px;">
-          <li *ngFor="let keyword of keyWords">{{keyword}}</li>
+      <ul style="columns: 1;margin-top: 0px;">
+          <li *ngFor="let keyword of resultData.keywords">{{keyword | titlecase}}</li>
           
         </ul>
   </div>

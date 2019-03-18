@@ -27,7 +27,7 @@ export class SearchResultComponent implements OnInit {
 
   initListing(){
     if(this.resultData != undefined){
-      this.resultData.keywords = this.descriptionParser.parseDescription(this.resultData.description);
+      this.resultData.keywords = this.descriptionParser.parseDescription(this.resultData.job_summary);
     }
   }
 

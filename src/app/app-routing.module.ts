@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompanyPageComponent } from './company-page/company-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { TosPageComponent } from './tos-page/tos-page.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     component: UserPageComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path:'terms',
+    component: TosPageComponent
+},
   {
     path: '',
     redirectTo: 'home',

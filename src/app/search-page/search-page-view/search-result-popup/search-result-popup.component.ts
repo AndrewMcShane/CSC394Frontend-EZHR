@@ -27,7 +27,7 @@ export class SearchResultPopupComponent implements OnInit {
     if(listingData.keywords){
       this.keywords = listingData.keywords;
     }
-    this.outToLink = listingData.applyLink;
+    this.outToLink = listingData.job_url;
   }
 
   toggle(){

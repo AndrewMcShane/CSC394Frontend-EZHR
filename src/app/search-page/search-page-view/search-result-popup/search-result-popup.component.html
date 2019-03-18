@@ -2,7 +2,7 @@
 
   <div class="topBuffer"></div>
   <div class="topBuffer"></div>
-  <div class="resultContainer dropShadow">
+  <div *ngIf="jobData" class="resultContainer dropShadow">
     <div class="topHalf">
       <div class="imageContainer">
           <a (click)="goToCompanyPage()">
@@ -12,20 +12,20 @@
         </div>
       <div class="titleLocationContainer">
         <div class="titleContainer">
-          {{jobData.jobTitle}}
+          {{jobData.job_title}}
         </div>
         <div class="locationContainer">
-          {{jobData.jobLocation}}
+            {{jobData.job_company}} | {{jobData.job_location}}
         </div>
       </div>
     </div>
     <div class="jobAttributes">
       <ul style="columns: 2">
-        <li *ngFor="let keyword of keywords">{{keyword}}</li> 
+        <li *ngFor="let keyword of keywords">{{keyword | titlecase}}</li> 
       </ul>
     </div>
-    <div class="bottomHalf">
-      {{jobData.description}}
+    <div class="bottomHalf" style="max-width: 100%">
+      {{jobData.job_summary}}
     </div>
     <div class="actionButtons">
       <button class="buttonHalf" (click)="toggle();" >Cancel</button>

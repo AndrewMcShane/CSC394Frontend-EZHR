@@ -1,9 +1,9 @@
 export class SearchResult{
-    company: string;
-    jobTitle: string;
-    jobLocation: string;
-    description: string;
-    applyLink: string;
+    job_company: string;
+    job_title: string;
+    job_location: string;
+    job_summary: string;
+    job_url: string;
     keywords?: Array<string>;
     companyID?:number;
     logoSrc?:string;
